@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+  Hi {{ user.username }}:)
+  <p><a href="{% url 'logout' %}">LogOut</a></p>
+  <h1>New Post </h1>
+  <form action="NOwtest/send" method="post">
+    {% csrf_token %}
+    <label for="NewPost"> Post : </label>
+    <input id="NewPost" type="text" name="NewPost" value="NewPost">
+    <input type="submit" value="Post Now">
+  <p>This Post Will Send To !! @testsmart1 !! Channel </p>
+  </form>
+{% else %}
+  <p>You are not logged in</p>
+  <a href="{% url 'login' %}">Login Now</a>
+{% endif %}
+{% endblock %}
